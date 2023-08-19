@@ -14,9 +14,18 @@ app.get("/", (req, res) => {
       const weatherData = JSON.parse(data);
       const temperature = weatherData.main.temp;
       const weatherDescription = weatherData.weather[0].description;
+      const city = weatherData.name;
+      const icon = weatherData.weather[0].icon;
+
+      const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+      res.write(
+        `<h1>The temperature in ${city} is ${temperature} <sup>o</sup>Celcius.</h1>`
+      );
+      res.write(`<p>The weather is ${weatherDescription}</p>`);
+      res.write(`<img src=${imgURL} />`);
+      res.send();
     });
   });
-  res.send("Server is up and running");
 });
 
 app.listen(PORT, () => {
