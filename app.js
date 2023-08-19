@@ -1,14 +1,23 @@
 const express = require("express");
 const https = require("https");
+const bodyParser = require("body-parser");
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  let url =
-    "https://api.openweathermap.org/data/2.5/weather?q=Gumia&appid=25800ea64262097a3498c00ad2ad6563&units=metric";
+  res.sendFile(__dirname + "/index.html");
+});
 
+app.post("/", (req, res) => {
+  //   console.log(req.body);
+  const query = req.body.cityName || "Gumia";
+  const apiKey = "25800ea64262097a3498c00ad2ad6563";
+  const unit = "metric";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=${unit}`;
   https.get(url, (response) => {
     response.on("data", (data) => {
       const weatherData = JSON.parse(data);
@@ -27,7 +36,6 @@ app.get("/", (req, res) => {
     });
   });
 });
-
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
