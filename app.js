@@ -28,10 +28,16 @@ app.post("/", (req, res) => {
 
       const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
       res.write(
-        `<h1>The temperature in ${city} is ${temperature} <sup>o</sup>Celcius.</h1>`
+        `
+            <div style="text-align:center; width:250px; height:300px; margin:auto; background: rgb(33,36,0);
+            background: linear-gradient(349deg, rgba(33,36,0,1) 0%, rgba(121,63,9,1) 30%, rgba(255,213,0,1) 81%); border-radius: 8px;">
+                <img src=${imgURL} />
+                <h2>${city}</h2>
+                <h1>${temperature} <sup>o</sup>C</h1>
+                <p>The weather is ${weatherDescription}</p>
+            </div>
+        `
       );
-      res.write(`<p>The weather is ${weatherDescription}</p>`);
-      res.write(`<img src=${imgURL} />`);
       res.send();
     });
   });
