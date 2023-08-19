@@ -29,8 +29,8 @@ app.post("/", (req, res) => {
       const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
       res.write(
         `
-            <div style="text-align:center; width:250px; height:300px; margin:auto; background: rgb(33,36,0);
-            background: linear-gradient(349deg, rgba(33,36,0,1) 0%, rgba(121,63,9,1) 30%, rgba(255,213,0,1) 81%); border-radius: 8px;">
+            <div style="text-align:center; width:250px; height:300px; margin:auto; background: rgb(255,255,255);
+            background: linear-gradient(193deg, rgba(255,255,255,1) 9%, rgba(162,162,135,1) 41%, rgba(0,0,0,1) 90%); border-radius: 8px;">
                 <img src=${imgURL} />
                 <h2>${city}</h2>
                 <h1>${temperature} <sup>o</sup>C</h1>
